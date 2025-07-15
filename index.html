@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+  <style>
+    Weather App with React
+
+  body { 
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; 
+    background: linear-gradient(to right, #33695f, #2b2e3c); 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2rem; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    color: #333;
+    text-align: center;
+   }
+
+  h1 { 
+    color:rgb(203, 121, 20); 
+    font-size: 2.5rem; 
+    margin-bottom: 2rem; 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
+  
+  }
+
+  .container { 
+    background: rgba(255, 255, 255, 0.25); 
+    border-radius: 1.5rem; 
+    padding: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    max-width: 400px; width: 100%; 
+    text-align: center; 
+    transition: all 0.3s ease-in-out; 
+  }
+
+  input { 
+    padding: 0.8rem; 
+    width: 70%; 
+    border: none; 
+    border-radius: 0.75rem; 
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+    box-shadow: 0 0 0 1px #ccc inset;
+    transition: box-shadow 0.3s; 
+    text-align: center;
+  }
+  button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.75rem; 
+    background: #3498db; 
+    text-align:center;
+    color:beige;
+  }
+
+  </style>
+</head>
+<body>
+  <h1>🌤 Weather Dashboard</h1>
+  <div class="container">
+    <input type="text" id="cityInput" placeholder="Enter city..." />
+    <button onclick="getWeather()">Get Weather</button>
+    <div class="weather" id="weatherDisplay"></div>
+    <div class="error" id="errorMsg"></div>
+  </div>
+
+  <script>
+    async function getWeather() {
+      const city = document.getElementById("cityInput").value.trim();
+      const weatherDisplay = document.getElementById("weatherDisplay");
+      const errorMsg = document.getElementById("errorMsg");
+      weatherDisplay.innerHTML = "";
+      errorMsg.textContent = "";
+
+      if (!city) {
+        errorMsg.textContent = "Please enter a city name.";
+        return;
+      }
+
+      try {
+        const response = await fetch(`/weather?city=${city}`);
+        if (!response.ok) throw new Error("City not found");
+        const data = await response.json();
+
+        const icon = data.weather[0].icon;
+        const weatherHTML = `
+          <h2>${data.name}, ${data.sys.country}</h2>
+          <img class="icon" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather icon"/>
+          <p><strong>${data.weather[0].description}</strong></p>
+          <p>🌡 Temperature: ${data.main.temp}°C</p>
+          <p>🤗 Feels Like: ${data.main.feels_like}°C</p>
+          <p>💧 Humidity: ${data.main.humidity}%</p>
+          <p>🌬 Wind: ${data.wind.speed} m/s</p>
+          <p>🕓 Local Time: ${new Date(data.dt * 1000).toLocaleString()}</p>
+        `;
+        weatherDisplay.innerHTML = weatherHTML;
+      } catch (error) {
+        errorMsg.textContent = error.message;
+      }
+    }
+  </script>
+</body>
+</html>
