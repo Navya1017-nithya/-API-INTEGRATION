@@ -163,7 +163,28 @@ The response, which includes weather condition, temperature, wind, and more, is 
 
 # Output 
 
-<img width="1918" height="1075" alt="Image" src="https://github.com/user-attachments/assets/e78598c6-65ea-486d-95c1-cbd9e624fe16" />
+
+
+
+
+
+
+
+<img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/4e38648d-4656-48a0-81ea-4782c0f90fb4" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/81c70fc0-c805-4932-9bf6-bfa15db02362" />
