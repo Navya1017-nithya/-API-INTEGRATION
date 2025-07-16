@@ -160,3 +160,7 @@ The server reads the city query parameter, appends it to the OpenWeatherMap URL,
 
 The response, which includes weather condition, temperature, wind, and more, is then passed back to the frontend, parsed, and displayed to the user in a visually appealing layout.
 
+
+# Output 
+
+<img width="1918" height="1075" alt="Image" src="https://github.com/user-attachments/assets/e78598c6-65ea-486d-95c1-cbd9e624fe16" />
